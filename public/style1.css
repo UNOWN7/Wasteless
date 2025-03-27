@@ -1,0 +1,95 @@
+#header {
+    box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
+    display: block !important;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: white;
+    z-index: 1000;
+}
+
+/* Sidebar Fix */
+#sidebar {
+    width: 250px;
+    background-color: #4CAF50;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 60px; /* Adjusted so it doesn't go behind the header */
+    left: 0;
+    padding-top: 20px;
+    text-align: center;
+}
+
+/* Center Sidebar Links */
+.sidebar-nav {
+    
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+}
+
+.sidebar-nav li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar-nav li a:hover {
+    background-color: #45a049;
+}
+
+/* Main Content Adjustments */
+.main {
+    margin-left: 270px;
+    padding: 20px;
+}
+
+/* Table Styles */
+.waste-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.waste-table th, .waste-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.waste-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.waste-table td {
+    background-color: #f9f9f9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #sidebar {
+        width: 70px;
+    }
+
+    .sidebar-nav li a {
+        font-size: 14px;
+    }
+
+    .main {
+        margin-left: 70px;
+    }
+}

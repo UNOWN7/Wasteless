@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Dashboard - WasteLess</title>
+    <link rel="stylesheet" href="/style1.css">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header" class="sticky">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#">&nbsp;&nbsp;
+                <img src="/recycling-icon.svg" style="height: 40px;width: 40px;">&nbsp; WasteLess
+            </a>
+        </nav>
+    </header>
+
+    <div class="container-dashboard">
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <ul class="sidebar-nav">
+                <li class="sidebar-link"><a href="#" onclick="showSection('notification')">Notifications</a></li>
+                <li class="sidebar-link"><a href="#" onclick="showSection('accepted-waste')">Accepted Waste</a></li>
+                
+                <li class="sidebar-link"><a href="#" onclick="showSection('history')">History</a></li>
+                <li class="sidebar-link"><a href="/company/login">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main">
+            
+            <!-- Notifications Section -->
+            <div id="notification" class="content-section">
+                <br><br>
+                <h2>Pending Waste Requests</h2>
+                <table class="waste-table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Waste</th>
+                            <th>Quantity</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (pendingWaste.length > 0) { %>
+                            <% pendingWaste.forEach(transaction => { %>
+                                <tr id="waste-<%= transaction.WasteItem.id %>">
+                                    <td><%= transaction.User ? transaction.User.name : 'Unknown' %></td>
+                                    <td><%= transaction.WasteItem ? transaction.WasteItem.type : 'Unknown' %></td>
+                                    <td><%= transaction.WasteItem ? transaction.WasteItem.quantity : 'Unknown' %> kg</td>
+                                    <td><%= transaction.WasteItem ? transaction.WasteItem.address : 'Unknown' %></td>
+                                    <td>
+                                        <form class="accept-waste-form" action="/company/accept-waste" method="POST">
+                                            <input type="hidden" name="wasteId" value="<%= transaction.WasteItem ? transaction.WasteItem.id : '' %>">
+                                            <input type="hidden" name="companyId" value="<%= company ? company.id : '' %>">
+                                            <button type="submit">Accept</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr><td colspan="5">No pending waste found.</td></tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Accepted Waste Section -->
+            <div id="accepted-waste" class="content-section">
+                <br><br>
+                <h2>Accepted Waste</h2>
+                <table class="waste-table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Waste Type</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                            <th>Pick-up </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% acceptedWaste.forEach(transaction => { %>
+                            <tr>
+                                <td><%= transaction.User ? transaction.User.name : 'Unknown' %></td>
+                                <td><%= transaction.WasteItem ? transaction.WasteItem.type : 'Unknown' %></td>
+                                <td><%= transaction.WasteItem ? transaction.WasteItem.quantity : 'Unknown' %> kg</td>
+                                <td><%= transaction.status %></td>
+                                <td>
+                                    <button class="pickup-btn" data-wasteid="<%= transaction.WasteItem ? transaction.WasteItem.id : '' %>">Picked Up</button>
+
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- History Section -->
+    <div id="history" class="content-section">
+        <br><br>
+        <h2>Pickup History</h2>
+        <table class="waste-table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Waste Type</th>
+                    <th>Quantity</th>
+                    <th>Pickup Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% pickedUpWaste.forEach(transaction => { %>
+                    <tr>
+                        <td><%= transaction.User ? transaction.User.name : 'Unknown' %></td>
+                        <td><%= transaction.WasteItem ? transaction.WasteItem.type : 'Unknown' %></td>
+                        <td><%= transaction.WasteItem ? transaction.WasteItem.quantity : 'Unknown' %> kg</td>
+                        <td><%= transaction.updatedAt.toDateString() %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+        </div>
+    </div>
+
+    
+</div>
+</div>
+    <script>
+            function showSection(sectionId) {
+                document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+                document.getElementById(sectionId).style.display = 'block';
+            }
+
+// Ensure only notifications are visible on load
+document.addEventListener("DOMContentLoaded", function() {
+    showSection('notification');
+});
+
+
+        document.querySelectorAll('.accept-waste-form').forEach(form => {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const wasteId = formData.get("wasteId");
+                const companyId = formData.get("companyId");
+
+                console.log("Sending Data:", { wasteId, companyId });
+
+                const response = await fetch('/company/accept-waste', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ wasteId, companyId })
+                });
+
+                const result = await response.json();
+                alert(result.message);
+                location.reload();
+            });
+        });
+
+        document.querySelectorAll('.pickup-btn').forEach(button => {
+        button.addEventListener('click', async function() {
+        const wasteId = this.getAttribute('data-wasteid');
+
+        const response = await fetch('/company/pickup-waste', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ wasteId })
+        });
+
+        const result = await response.json();
+        alert(result.message);
+        location.reload();
+        });
+        });
+
+    </script>
+
+</body>
+</html>

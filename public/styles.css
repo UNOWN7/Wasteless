@@ -1,0 +1,177 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* Header Navigation */
+#header {
+    background: #007bff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    margin-left: 20px;
+}
+
+.navbar ul li a {
+    color: white;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.center_h {
+    background-image: url("../img/1.jpg");
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    color: white;
+    padding: 80px 0;
+}
+
+.center_hm {
+    padding: 20px;
+}
+
+.center_h2 {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+/* Waste Categories */
+#sched {
+    background-image: url("../img/2.jpg");
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+#sched h2 {
+    color: white;
+    font-size: 30px;
+}
+
+/* Footer */
+#footer {
+    text-align: center;
+    background: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+/* Form Containers (Login/Register) */
+.login-container, .register-container {
+    width: 350px;
+    margin: 60px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.login-container h2, .register-container h2 {
+    margin-bottom: 20px;
+}
+
+.login-container input, .register-container input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #218838;
+}
+
+.login-container p, .register-container p {
+    margin-top: 10px;
+}
+
+.login-container a, .register-container a {
+    font-weight: bold;
+}
+/* Header Navigation */
+#header {
+    background: #007bff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    margin-left: 20px;
+}
+
+.navbar ul li a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Button Styling */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #28a745;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.button:hover {
+    background: #218838;
+}

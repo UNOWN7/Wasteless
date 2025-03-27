@@ -1,0 +1,237 @@
+/* General Layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+}
+button{
+    background-color: #4CAF50
+}
+#header {
+    box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
+    display: block !important;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: white;
+    z-index: 1000;
+}
+
+/* Container for Sidebar & Main Content */
+.container-dashboard {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+#sidebar {
+   
+    width: 250px;
+    background-color: #4CAF50;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top:40px; 
+    padding-top: 20px;
+    padding-top: 20px;
+    transition: width 0.3s ease;
+}
+
+.sidebar-nav {
+    
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar-nav li a:hover {
+    background-color: #45a049;
+}
+
+/* Main Content */
+.main {
+    margin-left: 250px;
+
+    padding: 1px;
+    flex: 1;
+}
+
+/* Remove margin-top for home section image */
+#home .hero {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Center align content sections */
+.content-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; /* Ensures vertical centering */
+    text-align: center;
+}
+
+/* Specific fix for profile, history, and submit waste */
+#profile, #history, #submit-waste {
+    padding-top: 20px; /* Adjust padding if needed */
+}
+
+
+
+
+.content-section:first-child {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #sidebar {
+        width: 70px;
+        text-align: center;
+    }
+
+    .sidebar-nav li {
+        padding: 10px;
+    }
+
+    .sidebar-nav li a {
+        font-size: 14px;
+    }
+
+    .main {
+        margin-left: 70px;
+    }
+}
+
+/* Center Submit Waste Section */
+#submit-waste {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; /* Centers vertically */
+    text-align: center;
+}
+
+/* Center the Form */
+#submit-waste form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Input Styling */
+#submit-waste form label {
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#submit-waste form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Center the Submit Button */
+#submit-waste form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#submit-waste form button:hover {
+    background-color: #45a049;
+}
+
+
+/* History Section Box */
+/* History Section Styling */
+.history-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Individual Waste Item Box */
+.history-box {
+    background: white;
+    border: 2px solid #ddd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Table Formatting */
+.history-box table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.history-box th, .history-box td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.history-box th {
+    background: #4CAF50;
+    color: white;
+}
+
+.history-box td {
+    background: #f9f9f9;
+}
+
+#wasteForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: auto; /* Centers horizontally */
+}
